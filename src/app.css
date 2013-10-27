@@ -1,0 +1,93 @@
+#gooCanvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.overlay {
+    background-color: #000510;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.8;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    z-index: 98;
+    display: none;
+}
+/* -- button ------------------ */
+.button {
+    width: 100px;
+    background: #00555e;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #f0f0f0;
+    font-size: medium;
+    font-weight: bold;
+    font-family: Calibri, sans-serif;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: 0.7s;
+}
+
+.button:hover {
+    background: #00262f;
+    color: #ffffff;
+    transition: 0.2s;
+}
+
+.button:active {
+    background: #1b435e;
+}
+/* ---------------------------- */
+.dialog {
+    background-color: #00a4ae;
+    z-index: 99;
+    position: absolute;
+    left: 50%;
+    width: 440px;
+
+    top: 10%;
+    display: none;
+    padding: 8px;
+
+    margin-top: 0px;
+    margin-left: -250px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+
+    border-radius: 8px;
+}
+
+.dialogContainer {
+    max-height: 500px;
+    overflow: auto;
+    padding: 2px;
+}
+
+textarea {
+    font-size: small;
+    resize: vertical;
+}
+
+.text {
+    font-family: Calibri, sans-serif;
+}
+
+.textareatitle {
+    font-family: Calibri, sans-serif;
+    font-weight: bold;
+}
