@@ -1,7 +1,7 @@
 define([
 	'goo/renderer/MeshData',
 	'goo/math/MathUtils'],
-	
+
 	function (
 		MeshData,
 		MathUtils

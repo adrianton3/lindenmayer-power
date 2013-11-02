@@ -2,8 +2,7 @@ define([],
 	function () {
 	'use strict';
 
-	function Util() {
-	}
+	var Util = {};
 
 	function compHash() {
 		var args = Array.prototype.slice.call(arguments);
@@ -35,13 +34,15 @@ define([],
 		return ret;
 	};
 	
-	Util.numberOrDef = function(strNum, def) {
-		var tmp = parseInt(strNum, 10);
-		return isNaN(tmp) ? def : tmp;
-	};
-	
 	Util.clamp = function(v, min, max) {
 		return v < min ? min : v > max ? max : v;
+	};
+	
+	Util.trimWS = function(s) {
+		s = s.replace(/(^\s*)|(\s*$)/gi,'');
+		s = s.replace(/[ ]{2,}/gi,' ');
+		s = s.replace(/\n /,'\n');
+		return s;
 	};
 
 	return Util;

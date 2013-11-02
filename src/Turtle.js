@@ -16,7 +16,6 @@ define([
 		Util) {
 	'use strict';
 
-
 	function getColMat(r, g, b) {
 		var material = Material.createMaterial(ShaderLib.simpleColored, '');
 		//var material = Material.createMaterial(ShaderLib.simpleLit, '');

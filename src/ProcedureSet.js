@@ -1,20 +1,19 @@
-define(['Procedure'],
-	function (Procedure) {
+define([
+	'Procedure', 
+	'Util'
+	],
+	function (
+		Procedure, 
+		Util
+	) {
 	'use strict';
-
-	function trimWS(s) {
-		s = s.replace(/(^\s*)|(\s*$)/gi,"");
-		s = s.replace(/[ ]{2,}/gi," ");
-		s = s.replace(/\n /,"\n");
-		return s;
-	}
 
 	function ProcedureSet(proc) {
 		this.proc = proc;
 	}
 
 	ProcedureSet.fromString = function(s) {
-		s = trimWS(s);
+		s = Util.trimWS(s);
 
 		var proc = {};
 		var tmpar = s.substr(2).split('\n: ');

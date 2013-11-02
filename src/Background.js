@@ -18,7 +18,7 @@ define([
 	'use strict';
 
 	var Background = {};
-	
+
 	var multipliers = [
 		{ r: 0.7, g: 0.2, b: 0.1, baseK: 0, period: 0.4 },
 		{ r: 0.3, g: 0.2, b: 0.3, baseK: 0, period: 0.4 },
@@ -47,16 +47,16 @@ define([
 			var r = Math.cos(baseK + Math.sin(k)) * 0.5 + 0.5;
 			var g = Math.cos(baseK + Math.sin(k) + period) * 0.5 + 0.5;
 			var b = Math.cos(baseK + Math.sin(k) + period * 2) * 0.5 + 0.5;
-	
+
 			r *= rMult;
 			g *= gMult;
 			b *= bMult;
 			b += g;
-	
+
 			r = Util.clamp(r, 0, 1);
 			g = Util.clamp(g, 0, 1);
 			b = Util.clamp(b, 0, 1);
-	
+
 			return [r, g, b];
 		};
 	}
@@ -115,13 +115,13 @@ define([
 		var mesh = meshBuilder.build()[0];
 		return mesh;
 	}
-	
+
 	function getBackMeshData(multiplier) {
 		var colBuilder = ranColBuilder(
-			multiplier.r, 
-			multiplier.g, 
-			multiplier.b, 
-			multiplier.baseK, 
+			multiplier.r,
+			multiplier.g,
+			multiplier.b,
+			multiplier.baseK,
 			multiplier.period
 		);
 		return buildWall(colBuilder);
@@ -133,22 +133,22 @@ define([
 	Background.add = function(goo, i) {
 		if (added) return ;
 		added = true;
-			
+
 		var multiplier = multipliers[Util.clamp(i, 0, multipliers.length)];
 		var renderableMarker = {
 			meshData: getBackMeshData(multiplier),
 			materials: [Material.createMaterial(ShaderLib.point, '')],
 			transform: new Transform()
 		};
-		
+
 		var backCamera = new Camera(45, 3, 1, 1000);
 		backCamera.translation.setd(0, 0, 1000);
-		
+
 		function drawBack() {
 			goo.renderer.checkResize(backCamera);
 			goo.renderer.render(renderableMarker, backCamera, [], null, false);
 		}
-		
+
 		goo.callbacks.push(drawBack);
 	};
 

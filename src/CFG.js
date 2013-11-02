@@ -1,21 +1,20 @@
-define(['Prod'],
-	function (Prod) {
+define([
+	'Prod',
+	'Util'
+	],
+	function (
+		Prod,
+		Util
+	) {
 	'use strict';
 
-	function trimWS(s) {
-		s = s.replace(/(^\s*)|(\s*$)/gi,'');
-		s = s.replace(/[ ]{2,}/gi,' ');
-		s = s.replace(/\n /,'\n');
-		return s;
-	}
-
-	function Gic(start, prod) {
+	function CFG(start, prod) {
 		this.start = start;
 		this.prod = prod;
 	}
-	
-	Gic.fromString = function(s) {
-		s = trimWS(s);
+
+	CFG.fromString = function(s) {
+		s = Util.trimWS(s);
 
 		var tmp = s.indexOf(' ');
 		var start = s.substr(tmp + 1, s.indexOf('\n') - tmp - 1);
@@ -27,12 +26,12 @@ define(['Prod'],
 			prod[tmppr.from] = tmppr;
 		}
 
-		return new Gic(start, prod);
+		return new CFG(start, prod);
 	};
-	
-	Gic.prototype.isNonterm = function(s) {
+
+	CFG.prototype.isNonterm = function(s) {
 		return this.prod[s] != undefined;
 	};
 
-	return Gic;
+	return CFG;
 });

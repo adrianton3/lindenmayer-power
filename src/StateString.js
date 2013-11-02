@@ -6,19 +6,19 @@ define([],
 		this.ss = ss;
 	}
 	
-	StateString.fromFirstNonterm = function(gic) {
-		return new StateString([gic.start]);
+	StateString.fromFirstNonterm = function(cfg) {
+		return new StateString([cfg.start]);
 	};
 	
-	StateString.prototype.derive = function(gic) {
+	StateString.prototype.derive = function(cfg) {
 		var ss = [];
 		var tmpss;
 		var term;
 
 		for (var i in this.ss) {
 			term = this.ss[i];
-			if(gic.isNonterm(term)) {
-				tmpss = gic.prod[term].getRanSubString();
+			if(cfg.isNonterm(term)) {
+				tmpss = cfg.prod[term].getRanSubString();
 				for (var j in tmpss) {
 					ss.push(tmpss[j]);
 				}
