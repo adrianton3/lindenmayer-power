@@ -1,6 +1,6 @@
 /*
  * Lindenmayer power
- * Developed and maintanined by Adrian Toncean
+ * Developed and maintained by Adrian Toncean
  * Licensed under the MIT license
  */
 
@@ -28,7 +28,7 @@ require(['goo'], function() {
 
 		'SubString',
 		'Prod',
-		'Gic',
+		'CFG',
 		'Instruction',
 		'StateString',
 		'Procedure',
@@ -53,7 +53,7 @@ require(['goo'], function() {
 
 		SubString,
 		Prod,
-		Gic,
+		CFG,
 		Instruction,
 		StateString,
 		Procedure,
@@ -114,7 +114,7 @@ require(['goo'], function() {
 
 		setup();
 //=============================================================================
-		var gic;
+		var cfg;
 		var stateString;
 		var turtle;
 		var procedureSet;
@@ -137,7 +137,7 @@ require(['goo'], function() {
 					defaultStructure = Presets.binaryTree;
 				}
 				
-				document.getElementById("inp_gic").value = defaultStructure.grammar;
+				document.getElementById("inp_cfg").value = defaultStructure.grammar;
 				document.getElementById("inp_turtle").value = defaultStructure.commands;
 				nlev = defaultStructure.startLevel;
 			}
@@ -176,14 +176,14 @@ require(['goo'], function() {
 
 			var preset = Presets[collection[index]];
 
-			document.getElementById("inp_gic").value = preset.grammar;
+			document.getElementById("inp_cfg").value = preset.grammar;
 			document.getElementById("inp_turtle").value = preset.commands;
 			nlev = preset.startLevel;
 		}
 
 		function readAndDraw() {
-			var tmp = document.getElementById("inp_gic").value;
-			gic = Gic.fromString(tmp);
+			var tmp = document.getElementById("inp_cfg").value;
+			cfg = CFG.fromString(tmp);
 			
 			generate(nlev);
 			draw();
@@ -213,15 +213,15 @@ require(['goo'], function() {
 		function generate(nlev) {
 			var strout = 'Start string:\n';
 		 
-			stateString = StateString.fromFirstNonterm(gic);
+			stateString = StateString.fromFirstNonterm(cfg);
 			strout += stateString.toString();
 
 			for (var i = 0; i < nlev; i++) {
-				stateString = stateString.derive(gic);
+				stateString = stateString.derive(cfg);
 				strout += '\n\nString after ' + (i + 1) + ' derivation' + (i > 0 ? 's' : '') + ':\n' + stateString.toString();
 			}
 			
-			document.getElementById("out_gic").value = strout;
+			document.getElementById("out_cfg").value = strout;
 		}
 
 		function draw() {

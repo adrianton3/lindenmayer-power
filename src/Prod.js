@@ -18,7 +18,7 @@ define(['SubString'],
 		for (var i in tmpar) {
 			tmpss = SubString.fromString(tmpar[i]);
 			toar.push(tmpss);
-			sum += tmpss.chance;
+			sum += tmpss.weight;
 		}
 
 		return new Prod(from,toar,sum);
@@ -29,7 +29,7 @@ define(['SubString'],
 		var psum = 0;
 
 		for (var i = 0; i < this.toar.length; i++) {
-			psum += this.toar[i].chance;
+			psum += this.toar[i].weight;
 			if(psum >= ran) return this.toar[i].ss;
 		}
 		throw "Exception at getRanSubString";
