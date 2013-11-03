@@ -33,15 +33,22 @@ define([],
 
 		return ret;
 	};
-	
+
 	Util.clamp = function(v, min, max) {
 		return v < min ? min : v > max ? max : v;
 	};
-	
+
 	Util.trimWS = function(s) {
-		s = s.replace(/(^\s*)|(\s*$)/gi,'');
+		s = s.replace(/(^\s*)|(\s*$)/gi, '');
 		s = s.replace(/[ ]{2,}/gi,' ');
 		s = s.replace(/\n /,'\n');
+		return s;
+	};
+
+	Util.trimEmptyLines = function(s) {
+		s = s.replace(/^(\r\n|\n|\r)/, '');
+		s = s.replace(/(\r\n|\n|\r)$/, '');
+		s = s.replace(/(\r\n|\n|\r){2,}/g, '\n');
 		return s;
 	};
 

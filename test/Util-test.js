@@ -41,5 +41,23 @@ define(['Util'], function(Util) {
 				expect(Util.trimWS('a  sd')).toEqual('a sd');
 			});
 		});
+
+		describe('trimEmptyLines', function() {
+			it('reduces a \\n to an empty string', function() {
+				expect(Util.trimEmptyLines('\n')).toEqual('');
+			});
+
+			it('removes empty lines from the beginning of a string', function() {
+				expect(Util.trimEmptyLines('\nasd')).toEqual('asd');
+			});
+
+			it('removes empty lines from the end of a string', function() {
+				expect(Util.trimEmptyLines('asd\n')).toEqual('asd');
+			});
+
+			it('removes empty lines from the middle of a string', function() {
+				expect(Util.trimEmptyLines('a\n\nsd')).toEqual('a\nsd');
+			});
+		});
 	});
 });

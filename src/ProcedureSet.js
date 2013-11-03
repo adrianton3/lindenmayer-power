@@ -1,33 +1,35 @@
 define([
-	'Procedure', 
+	'Procedure',
 	'Util'
 	],
 	function (
-		Procedure, 
+		Procedure,
 		Util
 	) {
 	'use strict';
 
-	function ProcedureSet(proc) {
-		this.proc = proc;
+	function ProcedureSet(procedures) {
+		this.procedures = procedures;
 	}
 
 	ProcedureSet.fromString = function(s) {
 		s = Util.trimWS(s);
+		s = Util.trimEmptyLines(s);
+		s = s.replace(/\n\s*:/g, '\n:');
 
-		var proc = {};
-		var tmpar = s.substr(2).split('\n: ');
+		var procedures = {};
+		var tmpar = s.substr(1).split('\n:');
 		var tmppr;
 		for (var i in tmpar) {
 			tmppr = Procedure.fromString(tmpar[i]);
-			proc[tmppr.name] = tmppr;
+			procedures[tmppr.name] = tmppr;
 		}
 
-		return new ProcedureSet(proc);
+		return new ProcedureSet(procedures);
 	};
 
 	ProcedureSet.prototype.isProcedure = function(s) {
-		return this.proc[s] !== undefined;
+		return this.procedures[s] !== undefined;
 	};
 
 	return ProcedureSet;

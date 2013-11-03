@@ -80,7 +80,7 @@ define([
 				entities[i].removeFromWorld();
 	};
 	//------------------------------------------------------------------------------------------------
-	Turtle.prototype.interpretIns = function(ins) {
+	Turtle.prototype.interpretInstruction = function(ins) {
 		var rap = Math.PI / 180;
 		var val;
 		var tmp;
@@ -200,12 +200,13 @@ define([
 		}
 	};
 	//------------------------------------------------------------------------------------------------
-	Turtle.prototype.interpret = function(s, ps) {
-		for (var i in s.ss) {
-			if(ps.isProcedure(s.ss[i])) {
-				var p = ps.proc[s.ss[i]];
-				for (var j in p.instructions) {
-					this.interpretIns(p.instructions[j]);
+	Turtle.prototype.interpret = function(stateString, procedureSet) {
+		for (var i in stateString.ss) {
+			if(procedureSet.isProcedure(stateString.ss[i])) {
+				var procedure = procedureSet.procedures[stateString.ss[i]];
+				for (var j in procedure.instructions) {
+					var instruction = procedure.instructions[j];
+					this.interpretInstruction(instruction);
 				}
 			}
 		}

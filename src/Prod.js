@@ -1,5 +1,10 @@
-define(['SubString'],
-	function (SubString) {
+define([
+	'SubString',
+	'Util'
+	], function (
+		SubString,
+		Util
+	) {
 	'use strict';
 
 	function Prod(from, toar, sum) {
@@ -9,10 +14,16 @@ define(['SubString'],
 	}
 
 	Prod.fromString = function(s) {
+		s = Util.trimWS(s);
+
 		var sum = 0;
 		var toar = [];
 		var tmp = s.indexOf('\n');
-		var from = s.substr(0,tmp);
+
+		var from = s.substr(0, tmp).trim();
+		if (from.length === 0) throw new Error('Missing source nonterminal');
+		if (from.match(/\s/)) throw new Error('Source nonterminal cannot contain spaces');
+
 		var tmpar = s.substr(tmp + 1).split('\n');
 		var tmpss;
 		for (var i in tmpar) {

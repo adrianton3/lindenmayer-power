@@ -1,8 +1,7 @@
 define([
 	'Prod',
 	'Util'
-	],
-	function (
+	], function (
 		Prod,
 		Util
 	) {
@@ -15,11 +14,14 @@ define([
 
 	CFG.fromString = function(s) {
 		s = Util.trimWS(s);
+		s = Util.trimEmptyLines(s);
+		s = s.replace(/\n\s*->/g, '\n->');
 
-		var tmp = s.indexOf(' ');
-		var start = s.substr(tmp + 1, s.indexOf('\n') - tmp - 1);
+		var tmp = s.indexOf('->');
+		var start = Util.trimWS(s.substring(tmp + 2, s.indexOf('\n')));
+
 		var prod = {};
-		var tmpar = s.substr(3).split('\n-> ');
+		var tmpar = s.substr(2).split('\n->');
 		var tmppr;
 		for (var i in tmpar) {
 			tmppr = Prod.fromString(tmpar[i]);
@@ -30,7 +32,7 @@ define([
 	};
 
 	CFG.prototype.isNonterm = function(s) {
-		return this.prod[s] != undefined;
+		return this.prod[s] !== undefined;
 	};
 
 	return CFG;

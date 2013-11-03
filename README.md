@@ -15,3 +15,4 @@ Planned features:
 + more documentation
 + more refactoring
 + more testing
++ a proper lexer
