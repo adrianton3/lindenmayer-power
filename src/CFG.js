@@ -17,8 +17,8 @@ define([
 		s = Util.trimEmptyLines(s);
 		s = s.replace(/\n\s*->/g, '\n->');
 
-		var tmp = s.indexOf('->');
-		var start = Util.trimWS(s.substring(tmp + 2, s.indexOf('\n')));
+		if (s.substr(0, 2) !== '->') throw new Error('Must begin with ->');
+		var start = Util.trimWS(s.substring(2, s.indexOf('\n')));
 
 		var prod = {};
 		var tmpar = s.substr(2).split('\n->');

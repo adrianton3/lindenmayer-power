@@ -7,16 +7,16 @@
 	    <link rel="stylesheet" type="text/css" href="app.css">
 	    <script data-main="app" src="../lib/require.js"></script>
 	</head>
-	
+
 	<body style="overflow:hidden">
 	    <div id="d_dialog" class="dialog">
 	        <span class="text">Lindenmayer power</span><br><br>
 	        <span class="text">Choose from one of the presets:</span>
-	        <select id="cmb_presets">	           
+	        <select id="cmb_presets">
 	        </select>
 	        <br>
 	        <span class="text">or write your own grammar and instructions</span>
-	
+
 	        <div class="dialogContainer">
 	            <span class="textareatitle">Output</span>
 	            <br>
@@ -27,17 +27,20 @@
 	            <br>
 	            <textarea id="inp_cfg" rows="5" cols="56" ></textarea>
 	            <br>
+	            <div id="status_cfg" class="status err">Status:</div>
 	            <br>
 	            <span class="textareatitle">Commands input</span>
 	            <br>
 	            <textarea id="inp_turtle" rows="8" cols="56" ></textarea>
+	            <br>
+	            <div id="status_turtle" class="status ok">Status:</div>
 	        </div>
-	
+			<br>
 	        <div id="but_config_ok" class="button">Done</div>
 	    </div>
-	    
+
 		<div id="d_overlay" class="overlay"></div>
-		
+
 		<div id="but_config" class="button unselectable" style="position: absolute; text-align: center; top: 10px; left: 10px; width: 66px;">Conf...</div>
 		<div id="but_less" class="button unselectable" style="position: absolute; text-align: center; top: 44px; left: 10px; width: 20px;">[-]</div>
 		<div id="but_more" class="button unselectable" style="position: absolute; text-align: center; top: 44px; left: 56px; width: 20px;">[+]</div>

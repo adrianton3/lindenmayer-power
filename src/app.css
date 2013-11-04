@@ -60,7 +60,7 @@
     left: 50%;
     width: 440px;
 
-    top: 8%;
+    top: 4%;
     display: none;
     padding: 8px;
 
@@ -81,6 +81,23 @@
 textarea {
     font-size: small;
     resize: vertical;
+}
+
+.status {
+	max-width: 407px;
+	padding: 1px 3px;
+	border: 1px solid gray;
+	margin: 2px;
+	font-size: small;
+	font-family: monospace;
+}
+
+.err {
+	background-color: #FE4512
+}
+
+.ok {
+	background-color: #56FE45
 }
 
 .text {

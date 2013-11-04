@@ -64,6 +64,12 @@ define([
 
 				expect(function() { ProcedureSet.fromString(s); }).toThrow(new Error('Procedure name cannot contain spaces'));
 			});
+
+			it('throws error if not beginning with :', function() {
+				var s = 'ins1 par1\n: p\nins2 par1 par2';
+
+				expect(function() { ProcedureSet.fromString(s); }).toThrow(new Error('Must begin with :'));
+			});
 		});
 	});
 });

@@ -91,6 +91,12 @@ define([
 
 				expect(function() { CFG.fromString(s); }).toThrow(new Error('Source nonterminal cannot contain spaces'));
 			});
+
+			it('throws error if not beginning with ->', function() {
+				var s = 'Start Tar\n1 a-nonterm';
+
+				expect(function() { CFG.fromString(s); }).toThrow(new Error('Must begin with ->'));
+			});
 		});
 	});
 });

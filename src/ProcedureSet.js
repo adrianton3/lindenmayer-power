@@ -17,6 +17,8 @@ define([
 		s = Util.trimEmptyLines(s);
 		s = s.replace(/\n\s*:/g, '\n:');
 
+		if (s.substr(0, 1) !== ':') throw new Error('Must begin with :');
+
 		var procedures = {};
 		var tmpar = s.substr(1).split('\n:');
 		var tmppr;
