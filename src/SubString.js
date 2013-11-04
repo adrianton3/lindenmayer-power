@@ -8,6 +8,7 @@ define([],
 	}
 
 	SubString.fromString = function(s) {
+		s = s.trim();
 		var tmp = s.indexOf(' ');
 		var weight = parseFloat(s.substr(0, tmp));
 
