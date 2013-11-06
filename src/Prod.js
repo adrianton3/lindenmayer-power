@@ -36,7 +36,9 @@ define([
 	};
 
 	Prod.prototype.getRanSubString = function() {
-		var ran = Math.random()*this.sum;
+		if (this.toar.length === 0) return []; // better this than an extra rule
+
+		var ran = Math.random() * this.sum;
 		var psum = 0;
 
 		for (var i = 0; i < this.toar.length; i++) {
